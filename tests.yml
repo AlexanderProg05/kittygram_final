@@ -1,4 +1,4 @@
 repo_owner: AlexanderProg05
-kittygram_domain: http://158.160.208.144:9000
-taski_domain: http://158.160.208.144:8000
+kittygram_domain: https://mytaskiproject.hopto.org/kittygram/
+taski_domain: https://mytaskiproject.hopto.org/taski/
 dockerhub_username: alexanderprog05
