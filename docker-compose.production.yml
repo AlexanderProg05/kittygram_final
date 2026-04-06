@@ -16,7 +16,7 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
+    image: alexanderprog05/kittygram_backend:latest
     env_file: .env
     volumes:
       - static:/backend_static
@@ -27,13 +27,13 @@ services:
     command: sh -c "gunicorn --bind 0.0.0.0:8000 kittygram_backend.wsgi"
 
   frontend:
-    build: ./frontend
+    image: alexanderprog05/kittygram_frontend:latest
     volumes:
       - static:/frontend_static
     command: cp -r /app/build/. /frontend_static/
 
   gateway:
-    build: ./nginx
+    image: alexanderprog05/kittygram_gateway:latest
     ports:
       - "9000:80"
     volumes:
