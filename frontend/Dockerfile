@@ -1,13 +1,10 @@
-FROM node:18
+FROM node:18 as build
 WORKDIR /app
-
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-
-RUN npm ci
-
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
 RUN npm run build
-RUN npm install --global http-server
 
-CMD ["npx", "-y", "http-server", "-p", "8000", "/app/build"]
+FROM alpine:latest
+WORKDIR /static
+COPY --from=build /app/build /static/build
