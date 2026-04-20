@@ -5,16 +5,20 @@ from django.core.management.utils import get_random_secret_key
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECRET_KEY – из переменной окружения или случайный
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY', get_random_secret_key()
+)
 
 # DEBUG – из переменной окружения (строка 'True'/'False'), по умолчанию False
-DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+DEBUG = os.getenv(
+    'DEBUG', 'False'
+).lower() == 'true'
 
-# ALLOWED_HOSTS – из переменной окружения, разделитель запятая. По умолчанию ['*']
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*'
+# ALLOWED_HOSTS – из переменной окружения, разделитель запятая
+ALLOWED_HOSTS = os.getenv(
+    'DJANGO_ALLOWED_HOSTS', '*'
 ).split(',')
 
-# Остальные настройки без изменений
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,10 +74,22 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
+    },
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -83,7 +99,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/backend_static/static/'
+STATIC_ROOT = '/app/collected_static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media/'
@@ -91,9 +107,14 @@ MEDIA_ROOT = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
-    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': (
+        'rest_framework.pagination.PageNumberPagination'
+    ),
     'PAGE_SIZE': 10,
 }
-
