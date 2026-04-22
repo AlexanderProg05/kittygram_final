@@ -19,6 +19,13 @@ ALLOWED_HOSTS = os.getenv(
     'DJANGO_ALLOWED_HOSTS', '*'
 ).split(',')
 
+CSRF_TRUSTED_ORIGINS = ['https://mytaskiproject.hopto.org']
+CSRF_COOKIE_PATH = '/kittygram/'
+SESSION_COOKIE_PATH = '/kittygram/'
+
+# Указываем Django, что приложение работает в подкаталоге /kittygram
+FORCE_SCRIPT_NAME = '/kittygram'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,7 +106,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/app/collected_static'
+STATIC_ROOT = '/backend_static/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media/'
