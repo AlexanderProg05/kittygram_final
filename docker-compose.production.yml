@@ -18,6 +18,9 @@ services:
   backend:
     image: alexanderprog05/kittygram_backend:latest
     env_file: .env
+    environment:
+      - FORCE_SCRIPT_NAME=/kittygram
+      - STATIC_URL=/kittygram/static/
     volumes:
       - static:/backend_static
       - media:/media
